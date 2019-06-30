@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    //Click on button with id start to remove button
+    //click on button with id start to remove button
     $('#start').on('click', function () {
         $('#start').remove();
         game.loadQuestion();
@@ -163,7 +163,7 @@ $(document).ready(function () {
             $('#subwrapper').append('<h3>Incorrect: ' + game.incorrect + ' </h3>');
             $('#subwrapper').append('<h3>Unanswered: ' + game.unanswered + ' </h3>');
 
-            //update html with reset button
+            //append html with reset button
             $('#subwrapper').append('<button class="btn btn-primary" id="reset">RESET</button>');
         },
 
