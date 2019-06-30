@@ -1,144 +1,192 @@
 $(document).ready(function () {
+    //Click on button with id start to remove button
+    $('#start').on('click', function () {
+        $('#start').remove();
+        game.loadQuestion();
+    })
 
-    //------------------------------------
-    //GLOBAL VARIABLES
-    //------------------------------------
-    var time = 2;
-    var questions = {
+    //
+    $(document).on('click', '.answer-button', function (e) {
+        game.clicked(e);
+    })
 
-        question1: {
+    //defines questions variable as an object containing question, answers, correct answers, and image properties
+    var questions = [
+        {
             question: 'Angie is the new spokesperson for which council?',
-            answers: ['A. Night Cheese ', 'B. Ham ', 'C. Throwing Wine ', 'D. Cheek (It\'s pronounced \'chic\'. It\'s French!)'],
+            answers: ['A. Night Cheese', 'B. Ham', 'C. Throwing Wine', 'D. Cheek (It\'s pronounced \'chic\'. It\'s French!)'],
             correctAnswer: 'B. Ham',
             image: 'assets/images/ham.gif'
         },
 
-        question2: {
+        {
             question: 'What southern city does Kenneth the Page call home?',
-            answers: ['A. Chattanooga, TN ', 'B. Rocky Face, GA ', 'C. Stone Mountain, GA ', 'D. Deep Step, GA'],
+            answers: ['A. Chattanooga, TN', 'B. Rocky Face, GA', 'C. Stone Mountain, GA', 'D. Deep Step, GA'],
             correctAnswer: 'C. Stone Mountain, GA',
-            image: "assets/images/kenneth.gif"
+            image: 'assets/images/kenneth.gif'
         },
 
-        question3: {
+        {
             question: 'What is Jack\'s middle name?',
-            answers: ['A. Ellen ', 'B. Joseph ', 'C. David ', 'D. Francis'],
+            answers: ['A. Ellen', 'B. Joseph', 'C. David', 'D. Francis'],
             correctAnswer: 'D. Francis',
-            image: "assets/images/jack.webp"
+            image: 'assets/images/jack.webp'
         },
 
-        question4: {
+        {
             question: 'Floyd moved to which Ohio City?',
-            answers: ['A. Cleveland ', 'B. Toledo ', 'C. Cincinnati ', 'D. Dayton'],
+            answers: ['A. Cleveland', 'B. Toledo', 'C. Cincinnati', 'D. Dayton'],
             correctAnswer: 'A. Cleveland',
-            image: "assets/images/clevland.gif"
+            image: 'assets/images/clevland.gif'
         },
 
-        question5: {
+        {
             question: 'Which actor has NOT guest starred as Liz\'s boyfriend on 30 Rock?',
-            answers: ['A. Jon Hamm ', 'B. Jason Sudikis ', 'C. Dean Winters ', 'D. Ben Affleck '],
+            answers: ['A. Jon Hamm', 'B. Jason Sudikis', 'C. Dean Winters', 'D. Ben Affleck'],
             correctAnswer: 'D. Ben Affleck',
-            image: "assets/images/boyfriends.jpg"
+            image: 'assets/images/boyfriends.jpg'
         },
 
-        question6: {
+        {
             question: 'What time does Jack change into a tuxedo?',
             answers: ['A. 5 PM', 'B. 6 PM', 'C. Noon', 'D. Midnight'],
             correctAnswer: 'B. 6 PM',
-            image: "assets/images/tuxedo.gif"
+            image: 'assets/images/tuxedo.gif'
         }
 
-    };
+    ];
 
-    var intervalId;
+    //Game variable that is an option with various properties such as current question, counter, and multiple functions
+    var game = {
+        questions: questions,
+        currentQuestion: 0,
+        counter: 30,
+        correct: 0,
+        incorrect: 0,
 
-    //------------------------------------
-    //FUNCTIONS
-    //------------------------------------
+        //function to count down game counter
+        countdown: function () {
 
+            //count down game counter
+            game.counter--;
 
-    //Function to play the game
-    var playGame = function () {
+            //print count down on html 
+            $('#counter').html(game.counter);
 
-        $('.btn').on('click', function () {
+            //if game counter is less than or equal to 0, run the timeUp function
+            if (game.counter <= 0) {
 
-            //Testing/debugging
-            console.log(questions.question1.question);
-            console.log(questions.question1.answers);
-            console.log(questions.question1.correctAnswer);
-            console.log(questions.question1.image);
+                //test
+                console.log("Time is up!");
 
-            //When button is clicked, remove the button
-            $('button').remove();
+                //run the timeUp function
+                game.timeUp();
+            }
+        },
 
-            //Run quiz function
-            quiz();
-        });
+        //function to load each quiz question
+        loadQuestion: function () {
 
-    }
+            //set interval of timer with timer variable
+            timer = setInterval(game.countdown, 1000);
 
+            //print quiz question in subwrapper div
+            $('#subwrapper').html('<h2>' + questions[game.currentQuestion].question + '</h2>');
 
-    //Function to ask questions
-    var quiz = function () {
+            //for each answer to the question, print answer choices in subwrapper div
+            for (var i = 0; i < questions[game.currentQuestion].answers.length; i++) {
+                $('#subwrapper').append('<button class="answer-button" id="button-' + i + '" data-name= "' + questions[game.currentQuestion].answers[i] + '">' + questions[game.currentQuestion].answers[i] + '</button>');
+            }
+        },
 
-        //Posting question to div
-        $("#question").html(questions.question1.question);
+        nextQuestion: function () {
 
-        //Posting answers to div
-        $("#answerA").html(questions.question1.answers[0]);
-        $("#answerB").html(questions.question1.answers[1]);
-        $("#answerC").html(questions.question1.answers[2]);
-        $("#answerD").html(questions.question1.answers[3]);
+        },
 
-        intervalId = setInterval(timeCountdown, 1000);
-    }
+        timeUp: function () {
 
-    //Function to count down time and clear the interval
-    var timeCountdown = function () {
+        },
 
-        if () {
+        results: function () {
 
-            //Reduces time in the time counter 
-            time--;
+        },
 
-            //Update HTML to show time left
-            $("#timer").html('Time Remaining: ' + time + ' seconds');
+        //function to run when an answer is clicked
+        clicked: function (e) {
 
-            //Test
-            console.log(time);
-        }
+            //clear timer
+            clearInterval(timer);
 
-        //Clears and stops time
-        else (time === 0) {
-            clearInterval(intervalId);
+            //if else statement to take action depending on if question is anwered correctly
+            if ($(e.target).data("name") == questions[game.currentQuestion].correctAnswer) {
+                game.answeredCorrectly();
+            } else {
+                game.answeredIncorrectly();
+            }
+        },
 
-            //Test
-            console.log(true);
+        answeredCorrectly: function () {
 
-            //Update HTML to show time is up!
-            $("#timer").html('Time is up!!');
+            //test
+            console.log("You got it!");
+            console.log(questions[game.currentQuestion].image);
 
-            //Clear question and answers
-            $("#question").empty();
-            $("#answerA").empty();
-            $("#answerB").empty();
-            $("#answerC").empty();
-            $("#answerD").empty();
+            //clear timer
+            clearInterval(timer);
 
-            //Update HTML to show answer and image!
-            $("#answer").html('The answer is: ' + questions.question1.correctAnswer);
+            //increase the number of correct answers
+            game.correct++;
+
+            //update HTML to tell user they got the answer right
+            $('#subwrapper').html('<h2>YOU GOT IT RIGHT!</h2>');
+
+            //update HTML to show image
             var imageUpdate = $('<img id="imageUpdate">');
-            imageUpdate.attr('src', questions.question1.image);
-            imageUpdate.appendTo('#image');
-        }
+            imageUpdate.attr('src', questions[game.currentQuestion].image);
+            imageUpdate.appendTo('#subwrapper');
 
+            //keep answer on screen for 3 seconds before moving to next question
+            if (game.currentQuestion == questions.length - 1) {
+                setTimeout(game.results, 3000);
+            } else {
+                setTimeout(game.nextQuestion, 3000);
+            }
+        },
+
+        answeredIncorrectly: function () {
+
+            //test
+            console.log("Wrong!");
+            console.log(questions[game.currentQuestion].image);
+
+            //clear timer
+            clearInterval(timer);
+
+            //increase the number of incorrect answers
+            game.incorrect++;
+
+            //update HTML to tell user they got the answer wrong
+            $('#subwrapper').html('<h2>YOU GOT IT WRONG!</h2>');
+
+            //update HTML to show image
+            var imageUpdate = $('<img id="imageUpdate">');
+            imageUpdate.attr('src', questions[game.currentQuestion].image);
+            imageUpdate.appendTo('#subwrapper');
+
+            //keep answer on screen for 3 seconds before moving to next question
+            if (game.currentQuestion == questions.length - 1) {
+                setTimeout(game.results, 3000);
+            } else {
+                setTimeout(game.nextQuestion, 3000);
+            }
+
+        },
+
+        reset: function () {
+
+        }
     }
 
-    //------------------------------------
-    //MAIN PROCESS
-    //------------------------------------
-
-    playGame();
 
 
 });
