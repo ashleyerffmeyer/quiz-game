@@ -105,7 +105,7 @@ $(document).ready(function () {
 
             //for each answer to the question, print answer choices in subwrapper div
             for (var i = 0; i < questions[game.currentQuestion].answers.length; i++) {
-                $('#subwrapper').append('<button class="answer-button" id="button-' + i + '" data-name= "' + questions[game.currentQuestion].answers[i] + '">' + questions[game.currentQuestion].answers[i] + '</button>');
+                $('#subwrapper').append('<button class="answer-button btn btn-primary" id="button-' + i + '" data-name= "' + questions[game.currentQuestion].answers[i] + '">' + questions[game.currentQuestion].answers[i] + '</button>');
             }
         },
 
@@ -164,7 +164,7 @@ $(document).ready(function () {
             $('#subwrapper').append('<h3>Unanswered: ' + game.unanswered + ' </h3>');
 
             //append html with reset button
-            $('#subwrapper').append('<button class="btn btn-primary" id="reset">RESET</button>');
+            $('#subwrapper').append('<button class="btn btn-primary" id="reset">CLICK HERE TO PLAY AGAIN!</button>');
         },
 
         //function to run when an answer is clicked
@@ -173,7 +173,7 @@ $(document).ready(function () {
             //clear timer
             clearInterval(timer);
 
-            //if else statement to take action depending on if question is anwered correctly
+            //if else statement to take action depending on if question is answered correctly or not
             if ($(e.target).data("name") == questions[game.currentQuestion].correctAnswer) {
                 game.answerCorrect();
             } else {
@@ -207,9 +207,9 @@ $(document).ready(function () {
 
             //keep answer on screen for 3 seconds before moving to next question
             if (game.currentQuestion == questions.length - 1) {
-                setTimeout(game.results, 3000);
+                setTimeout(game.results, 4000);
             } else {
-                setTimeout(game.nextQuestion, 3000);
+                setTimeout(game.nextQuestion, 4000);
             }
         },
 
@@ -258,7 +258,7 @@ $(document).ready(function () {
             game.incorrect = 0;
             game.unanswered = 0;
 
-            //function to each quiz question
+            //function to call each quiz question
             game.loadQuestion();
         }
     }
