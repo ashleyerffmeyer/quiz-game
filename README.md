@@ -47,7 +47,7 @@ None
 
 ## Game Overview
 
-###Instructions
+### Instructions
 
 * The 30 Rock Trivia Game! is a game that shows only one question until the player answers it or their time runs out.
 
