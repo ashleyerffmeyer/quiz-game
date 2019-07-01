@@ -1,23 +1,23 @@
-#30 Rock Quiz Game
+# 30 Rock Quiz Game
 
 A jQuery powered, 30 Rock themed quiz game complete with timers!
 
 [Link to game!](https://erffmea.github.io/quiz-game/) 
 
-##Authors
+## Authors
 Ashley Erffmeyer, with major support from KU's Coding Boot Camp staff members:
 * Ryan LaRue (Instructor)
 * Jenny Dean (TA)
 * Jacqueline Kolze (TA)
 * Eli Vargas (TA)
 
-##Languages/Libraries Used
+## Languages/Libraries Used
 * JavaScript
 * jQuery
 * CSS
 * HTML
 
-##Prerequisites & Installations
+## Prerequisites & Installations
 None
 
 Note: Added the following script lines in index.html to allow for bootstrap and jQuery functionality
