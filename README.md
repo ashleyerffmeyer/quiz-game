@@ -2,7 +2,7 @@
 
 A jQuery powered, 30 Rock themed quiz game complete with timers!
 
-[Link to game!](https://erffmea.github.io/quiz-game/) 
+[Link to game!](https://ashleyerffmeyer.github.io/quiz-game/) 
 
 ## Authors
 Ashley Erffmeyer, with major support from KU's Coding Boot Camp staff members:
