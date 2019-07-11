@@ -201,7 +201,7 @@ $(document).ready(function () {
             $('#subwrapper').append('<h3>The correct answer is: ' + questions[game.currentQuestion].correctAnswer + '</h3>');
 
             //update HTML to show image
-            var imageUpdate = $('<img id="imageUpdate">');
+            var imageUpdate = $('<img id="imageUpdate" class="col-md-4">');
             imageUpdate.attr('src', questions[game.currentQuestion].image);
             imageUpdate.appendTo('#subwrapper');
 
